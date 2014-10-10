@@ -62,6 +62,13 @@ This document must be included in every build artifact and shall contain the fol
 1. List of failed tests or checks
 
 
+## Security
+
+Be aware of possible security threats and problems. Good places of information include
+
+* https://confluence.futurice.com/pages/editpage.action?pageId=13961668
+* https://www.owasp.org/index.php/Top_10_2013
+
 ## General questions to consider 
 
 * What is the expected/required life-span of the project?
