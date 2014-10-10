@@ -66,8 +66,8 @@ This document must be included in every build artifact and shall contain the fol
 
 Be aware of possible security threats and problems. Good places of information include
 
-* https://confluence.futurice.com/pages/editpage.action?pageId=13961668
-* https://www.owasp.org/index.php/Top_10_2013
+* [FutuHosting Security Guidelines](https://confluence.futurice.com/pages/editpage.action?pageId=13961668)
+* [OWASP Top 10 vulnerabilities 2013](https://www.owasp.org/index.php/Top_10_2013)
 
 ## General questions to consider 
 
