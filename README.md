@@ -14,6 +14,16 @@ Backend development best practices
     - [CI/QA Environment](#ciqa-environment)
     - [Production Environment](#production-environment)
       - [Bill of Materials](#bill-of-materials)
+  - [Security](#security)
+    - [Credentials](#credentials)
+    - [Secrets](#secrets)
+    - [Login Throttling](#login-throttling)
+    - [User Password Storage](#user-password-storage)
+    - [Audit Log](#audit-log)
+    - [Suspicious Action Throttling and/or blocking](#suspicious-action-throttling-andor-blocking)
+    - [Anonymized Data](#anonymized-data)
+    - [Temporary file storage](#temporary-file-storage)
+    - [Dedicated vs Shared server environment](#dedicated-vs-shared-server-environment)
   - [General questions to consider](#general-questions-to-consider)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
