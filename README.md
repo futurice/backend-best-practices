@@ -1,6 +1,23 @@
 Backend development best practices
 ==================================
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [N Commandments](#n-commandments)
+- [General](#general)
+  - [Development environment setup in README.md](#development-environment-setup-in-readmemd)
+  - [Data persistence](#data-persistence)
+  - [Environments](#environments)
+    - [Local environment](#local-environment)
+    - [CI/QA Environment](#ciqa-environment)
+    - [Production Environment](#production-environment)
+      - [Bill of Materials](#bill-of-materials)
+  - [General questions to consider](#general-questions-to-consider)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # N Commandments
 1. README.md in the root of the repo is the docs
 1. Single command run
@@ -39,18 +56,30 @@ different environments
 
 Shall this contain discussion on database stuff, or also any generated files?
 
-
 ## Environments
 
-Under construction: List of possible environments, and short description
-- Build/CI
-- Dev
-- QA
-- PerformanceTest
-- Staging
-- Production
+At a minimum you should have these environments:
 
+- [Local](#local-environment)
+- [CI/QA](#ciqa-environment)
+- [Production](#production-environment)
 
+If required, other environments can be added:
+
+- Staging before QA or prod
+- Separate CI from QA
+
+### Local environment
+
+This is your local development environment. You probably should not have a shared external development environment, instead you should work to make it possible to run the entire system locally.
+
+### CI/QA Environment
+
+This is a shared environment that code is deployed to as often as possible, preferably every time code is committed to the mainline branch. It can be broken from time to time, especially in the active development phase. It is an important canary environment and is as similar to production as possible. In later stages CI can be separated from QA so that QA is relatively stable and can be used for client verification.
+
+### Production Environment
+
+The big iron.
 
 #### Bill of Materials
 This document must be included in every build artifact and shall contain the following:
