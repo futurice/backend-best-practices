@@ -194,29 +194,29 @@ When you are ready to make a release, remember to check off everything on your r
 
 You *do* have one, right? If you don't, here is a good generic starting point for you:
 
-[ ] Deploying works the same no matter which environment you are deploying to
-[ ] All environments have well defined names, and they are referred to using those names
-[ ] All environments have the same underlying software stack
-[ ] All environment configuration is version controlled (web server config, CI build scripts etc.)
-[ ] The product has been tested from the networks from where it will be used (e.g. public Internet, customer LAN)
-[ ] The product has been tested with all of the targeted devices
-[ ] There is a simple way to find out what code is running in any given environment
-[ ] A versioning scheme has been defined
-[ ] Any version of the product should be easily mappable to a state of the code base
-[ ] Rolling back a deployment is possible
-[ ] Backups are running
-[ ] Restoring from a backup has been tested
-[ ] No secrets are stored in version control
-[ ] Logging is turned on
-[ ] There is a well defined process for accessing and searching through logs
-[ ] Logging includes exceptions and stack traces where appropriate
-[ ] Errors can be mapped to stack traces
-[ ] Release notes have been written
-[ ] Server environments are up-to-date
-[ ] A plan to update server environments exists
-[ ] The product has been load tested
-[ ] A method exists for replicating the state of one environment in another (e.g. copy prod to QA to reproduce an error)
-[ ] All repeating release processes have been automated
+* [ ] Deploying works the same no matter which environment you are deploying to
+* [ ] All environments have well defined names, and they are referred to using those names
+* [ ] All environments have the same underlying software stack
+* [ ] All environment configuration is version controlled (web server config, CI build scripts etc.)
+* [ ] The product has been tested from the networks from where it will be used (e.g. public Internet, customer LAN)
+* [ ] The product has been tested with all of the targeted devices
+* [ ] There is a simple way to find out what code is running in any given environment
+* [ ] A versioning scheme has been defined
+* [ ] Any version of the product should be easily mappable to a state of the code base
+* [ ] Rolling back a deployment is possible
+* [ ] Backups are running
+* [ ] Restoring from a backup has been tested
+* [ ] No secrets are stored in version control
+* [ ] Logging is turned on
+* [ ] There is a well defined process for accessing and searching through logs
+* [ ] Logging includes exceptions and stack traces where appropriate
+* [ ] Errors can be mapped to stack traces
+* [ ] Release notes have been written
+* [ ] Server environments are up-to-date
+* [ ] A plan to update server environments exists
+* [ ] The product has been load tested
+* [ ] A method exists for replicating the state of one environment in another (e.g. copy prod to QA to reproduce an error)
+* [ ] All repeating release processes have been automated
 
 # General questions to consider
 
