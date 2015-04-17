@@ -24,6 +24,7 @@ Backend development best practices
   - [Anonymized Data](#anonymized-data)
   - [Temporary file storage](#temporary-file-storage)
   - [Dedicated vs Shared server environment](#dedicated-vs-shared-server-environment)
+- [Release checklist](#release-checklist)
 - [General questions to consider](#general-questions-to-consider)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -186,6 +187,36 @@ Sometimes, some files need to be accessible by different users (e.g. static cont
 Keep in mind that on UNIX/Linux filesystem, write access to a directory is a very powerful permission - it allows you to delete files in that directory and recreate them (which results in modified file). /tmp and /var/tmp are by default safe from this effect, because of the sticky bit that should be set on those.
 
 Additionally, as mentioned in the secrets section, file permissions are not preserved in version control, so even if you set them once, the next checkout/update/whatever may override them. Good idea is then to have a Makefile, script, a version control hook, etc that would set the correct permissions when updating the source.
+
+# Release checklist
+
+When you are ready to make a release, remember to check off everything on your release checklist! The resulting peace of mind, repeatability and dependability is a great boon.
+
+You *do* have one, right? If you don't, here is a good generic starting point for you:
+
+[ ] Deploying works the same no matter which environment you are deploying to
+[ ] All environments have well defined names, and they are referred to using those names
+[ ] All environments have the same underlying software stack
+[ ] All environment configuration is version controlled (web server config, CI build scripts etc.)
+[ ] The product has been tested from the networks from where it will be used (e.g. public Internet, customer LAN)
+[ ] The product has been tested with all of the targeted devices
+[ ] There is a simple way to find out what code is running in any given environment
+[ ] A versioning scheme has been defined
+[ ] Any version of the product should be easily mappable to a state of the code base
+[ ] Rolling back a deployment is possible
+[ ] Backups are running
+[ ] Restoring from a backup has been tested
+[ ] No secrets are stored in version control
+[ ] Logging is turned on
+[ ] There is a well defined process for accessing and searching through logs
+[ ] Logging includes exceptions and stack traces where appropriate
+[ ] Errors can be mapped to stack traces
+[ ] Release notes have been written
+[ ] Server environments are up-to-date
+[ ] A plan to update server environments exists
+[ ] The product has been load tested
+[ ] A method exists for replicating the state of one environment in another (e.g. copy prod to QA to reproduce an error)
+[ ] All repeating release processes have been automated
 
 # General questions to consider
 
