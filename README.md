@@ -201,7 +201,7 @@ You *do* have one, right? If you don't, here is a good generic starting point fo
 * [ ] The product has been tested from the networks from where it will be used (e.g. public Internet, customer LAN)
 * [ ] The product has been tested with all of the targeted devices
 * [ ] There is a simple way to find out what code is running in any given environment
-* [ ] A versioning scheme has been defined
+* [ ] A versioning scheme has been defined
 * [ ] Any version of the product should be easily mappable to a state of the code base
 * [ ] Rolling back a deployment is possible
 * [ ] Backups are running
@@ -210,7 +210,7 @@ You *do* have one, right? If you don't, here is a good generic starting point fo
 * [ ] Logging is turned on
 * [ ] There is a well defined process for accessing and searching through logs
 * [ ] Logging includes exceptions and stack traces where appropriate
-* [ ] Errors can be mapped to stack traces
+* [ ] Errors can be mapped to stack traces
 * [ ] Release notes have been written
 * [ ] Server environments are up-to-date
 * [ ] A plan to update server environments exists
