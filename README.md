@@ -195,3 +195,8 @@ Additionally, as mentioned in the secrets section, file permissions are not pres
 * What environments (dev, test, staging, prod, ...) are going to be set up?
 * What is the maximum allowed downtime for the production service?
 * How mature is the technology? Is major changes that break backward compatibility to be expected?
+
+# Generally proven useful tools
+
+* [HTTPie](https://github.com/jakubroztocil/httpie) is a great tool for testing APIs on the command line. It's simple to pass in custom headers and cookies, and it even has session support.
+* [jq](http://stedolan.github.io/jq/) is a CLI JSON processor. Massage JSON data coming in from cURL (or of course HTTPie!) at will. Another great tool for API testing or exploration.
