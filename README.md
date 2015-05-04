@@ -231,3 +231,8 @@ You *do* have one, right? If you don't, here is a good generic starting point fo
 
 * [HTTPie](https://github.com/jakubroztocil/httpie) is a great tool for testing APIs on the command line. It's simple to pass in custom headers and cookies, and it even has session support.
 * [jq](http://stedolan.github.io/jq/) is a CLI JSON processor. Massage JSON data coming in from cURL (or of course HTTPie!) at will. Another great tool for API testing or exploration.
+
+# License
+
+[Futurice Oy](http://www.futurice.com)
+Creative Commons Attribution 4.0 International (CC BY 4.0)
