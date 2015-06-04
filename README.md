@@ -135,7 +135,7 @@ If passwords won't be converted back to plaintext often (e.g. special procedure 
 
 If passwords still need to be regularly decrypted, separate the decryption functionality from the main application as much as possible - e.g. separate server accepts requests to decrypt a password, but enforces higher level of control - throttling, authorization, etc.
 
-Whenever possible (it should be possible in great majority of cases), store passwords using a good one-way hash with good random salt. And, no, SHA1 is not a good choice for a hashing function in this context. Hash functions that are designed with passwords in mind are deliberately slower, which makes offline brute-force attacks more time consuming, hence less feasible. Bcrypt is a good choice.
+Whenever possible (it should be possible in great majority of cases), store passwords using a good one-way hash with good random salt. And, no, SHA1 is not a good choice for a hashing function in this context. Hash functions that are designed with passwords in mind are deliberately slower, which makes offline brute-force attacks more time consuming, hence less feasible. See this post: http://security.stackexchange.com/questions/211/how-to-securely-hash-passwords/31846#31846
 
 ## Audit Log
 
