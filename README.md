@@ -30,15 +30,16 @@ Backend development best practices
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # N Commandments
-1. README.md in the root of the repo is the docs
-1. Single command run
-1. Single command deploy
-1. Repeatable and re-creatable builds
-1. Build artifacts bundle a "Bill of Materials"
-1. Use [UTC as the timezone](http://yellerapp.com/posts/2015-01-12-the-worst-server-setup-you-can-make.html) all around
 
+1. README.md in the root of the repo is the docs
+2. Single command run
+3. Single command deploy
+4. Repeatable and re-creatable builds
+5. Build artifacts bundle a "Bill of Materials"
+6. Use [UTC as the timezone](http://yellerapp.com/posts/2015-01-12-the-worst-server-setup-you-can-make.html) all around
 
 # General points on guidelines
+
 We do not want to limit ourselves to certain tech stacks or frameworks. Different
 problems require different solutions, and hence these guidelines should be valid
 for various backend architectures.
@@ -94,6 +95,7 @@ This is a shared environment that code is deployed to as often as possible, pref
 The big iron.
 
 # Bill of Materials
+
 This document must be included in every build artifact and shall contain the following:
 
 1. What version(s) of an SDK and critical tools were used to produce it
