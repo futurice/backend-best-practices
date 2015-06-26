@@ -1,5 +1,3 @@
-<!-- -*- mode:markdown ; mode:visual-line -*- -->
-
 Backend development best practices
 ==================================
 
