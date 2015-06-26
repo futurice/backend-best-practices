@@ -56,9 +56,27 @@ Consider storing any relevant parts of the development environment and dependenc
 
 # Data persistence
 
-Under construction: How do we handle persisted data between versions, and between different environments
+## General considerations
 
-Shall this contain discussion on database stuff, or also any generated files?
+Whichever persistence solution your project uses, there are general considerations that you should follow:
+
+* Have backups that are verified to work
+* Have scripts or other tooling for copying persistent data from one env to another, e.g. from prod to staging in order to debug something
+* Have plans in place for upgrading persistence solution (e.g. database server)
+
+## Persistence solutions
+
+### RDBMS
+
+### NoSQL
+
+#### Document storage
+
+#### Key-value store
+
+#### Graph database
+
+### Blob storage
 
 # Environments
 
