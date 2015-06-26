@@ -40,7 +40,7 @@ Backend development best practices
 
 # General points on guidelines
 
-We do not want to limit ourselves to certain tech stacks or frameworks. Different problems require different solutions, and hence these guidelines should be valid for various backend architectures.
+We do not want to limit ourselves to certain tech stacks or frameworks. Different problems require different solutions, and hence these guidelines are valid for various backend architectures.
 
 # Development environment setup in README.md
 
