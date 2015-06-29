@@ -62,7 +62,9 @@ Whichever persistence solution your project uses, there are general consideratio
 
 * Have backups that are verified to work
 * Have scripts or other tooling for copying persistent data from one env to another, e.g. from prod to staging in order to debug something
-* Have plans in place for upgrading persistence solution (e.g. database server)
+* Have plans in place for rolling out updates to persistence solution (e.g. database server security update)
+* Have plans in place for scaling up persistence solution
+* Have monitoring in place to verify health of persistence solution
 
 ## Persistence solutions
 
