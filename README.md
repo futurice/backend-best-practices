@@ -83,11 +83,6 @@ This section describes the environments you should have, at a minimum. It might 
 - [Staging](#staging-environment)
 - [Production](#production-environment)
 
-If required, other environments can be added:
-
-- Staging before QA or prod
-- Separate CI from QA
-
 ## Local development environment
 
 This is your local development environment. You probably should not have a shared external development environment, instead you should work to make it possible to run the entire system locally, by stubbing or mocking third-party services as needed.
