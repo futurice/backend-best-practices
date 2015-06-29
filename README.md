@@ -9,6 +9,14 @@ Backend development best practices
 - [General points on guidelines](#general-points-on-guidelines)
 - [Development environment setup in README.md](#development-environment-setup-in-readmemd)
 - [Data persistence](#data-persistence)
+  - [General considerations](#general-considerations)
+  - [SaaS, cloud-hosted or self-hosted?](#saas-cloud-hosted-or-self-hosted)
+  - [Persistence solutions](#persistence-solutions)
+    - [RDBMS](#rdbms)
+    - [NoSQL](#nosql)
+      - [Document storage](#document-storage)
+      - [Key-value store](#key-value-store)
+      - [Graph database](#graph-database)
 - [Environments](#environments)
   - [Local development environment](#local-development-environment)
   - [Continuous integration environment](#continuous-integration-environment)
@@ -70,9 +78,9 @@ Whichever persistence solution your project uses, there are general consideratio
 
 An important choice regarding any solution is where to run it.
 
-* SaaS -- Fast to get started, easy to scale up
-* Self-hosted in the cloud --
-* Self-hosted on own hardware -- able to manage physical security, most expensive and labor intensive
+* SaaS -- fast to get started, easy to scale up, some infrastructure work required to allow access from everywhere etc.
+* Self-hosted in the cloud -- allows tuning database more than SaaS and probably cheaper at scale in terms of hosting, but more labor-intensive
+* Self-hosted on own hardware -- able to tweak everything and manage physical security, but most expensive and labor intensive
 
 ## Persistence solutions
 
