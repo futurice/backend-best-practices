@@ -66,6 +66,14 @@ Whichever persistence solution your project uses, there are general consideratio
 * Have plans in place for scaling up persistence solution
 * Have monitoring in place to verify health of persistence solution
 
+## SaaS, cloud-hosted or self-hosted?
+
+An important choice regarding any solution is where to run it.
+
+* SaaS -- Fast to get started, easy to scale up
+* Self-hosted in the cloud --
+* Self-hosted on own hardware -- able to manage physical security, most expensive and labor intensive
+
 ## Persistence solutions
 
 ### RDBMS
