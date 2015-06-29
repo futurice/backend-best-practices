@@ -72,6 +72,7 @@ Whichever persistence solution your project uses, there are general consideratio
 * Have scripts or other tooling for copying persistent data from one env to another, e.g. from prod to staging in order to debug something
 * Have plans in place for rolling out updates to persistence solution (e.g. database server security update)
 * Have plans in place for scaling up persistence solution
+* Have plans or tooling for managing schema changes
 * Have monitoring in place to verify health of persistence solution
 
 ## SaaS, cloud-hosted or self-hosted?
