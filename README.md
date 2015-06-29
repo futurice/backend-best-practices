@@ -50,9 +50,9 @@ We do not want to limit ourselves to certain tech stacks or frameworks. Differen
 
 Document all the parts of the development/server environment. Strive to use the same setup and versions on all environments, starting from developer laptops, and ending with the actual production environment. This includes database, application server, proxy server (nginx, apache, ...), SDK version(s), gems/libraries/modules.
 
-Automate the setup process as much as possible. E.g. a docker file could fetch all parts of the software, and contain the necessary scripting to setup the environment and all the parts of it. Local/Cloud copies of installers can and should be used, if there is any risk of the packages to not be available at a later stage. A minimum precaution is to keep SHA-1 checksums of the packages, and to make sure that the checksum matches when the packages are installed.
+Automate the setup process as much as possible. For example, [Docker Compose](https://docs.docker.com/compose/) could be used in both production and development to set up a complete environment, where [Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/) fetch all parts of the software, and contain the necessary scripting to setup the environment and all the parts of it. Consider using archived copies of installers, in case upstream packages later become unavailable. A minimum precaution is to keep SHA-1 checksums of the packages, and to make sure that the checksum matches when the packages are installed.
 
-Consider storing any relevant parts of the development environment and dependencies in some persistent storage. If the environment can be built using docker, one possible way to do this is to use [docker export](http://docs.docker.com/reference/commandline/cli/#export).
+Consider storing any relevant parts of the development environment and dependencies in some persistent storage. If the environment can be built using Docker, one possible way to do this is to use [docker export](http://docs.docker.com/reference/commandline/cli/#export).
 
 # Data persistence
 
