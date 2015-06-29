@@ -10,9 +10,11 @@ Backend development best practices
 - [Development environment setup in README.md](#development-environment-setup-in-readmemd)
 - [Data persistence](#data-persistence)
 - [Environments](#environments)
-  - [Local environment](#local-environment)
-  - [CI/QA Environment](#ciqa-environment)
-  - [Production Environment](#production-environment)
+  - [Local development environment](#local-development-environment)
+  - [Continuous integration environment](#continuous-integration-environment)
+  - [Testing environment](#testing-environment)
+  - [Staging environment](#staging-environment)
+  - [Production environment](#production-environment)
 - [Bill of Materials](#bill-of-materials)
 - [Security](#security)
   - [Credentials](#credentials)
@@ -26,6 +28,8 @@ Backend development best practices
   - [Dedicated vs Shared server environment](#dedicated-vs-shared-server-environment)
 - [Release checklist](#release-checklist)
 - [General questions to consider](#general-questions-to-consider)
+- [Generally proven useful tools](#generally-proven-useful-tools)
+- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -58,28 +62,33 @@ Shall this contain discussion on database stuff, or also any generated files?
 
 # Environments
 
-At a minimum you should have these environments:
+This section describes the environments you should have, at a minimum. It might sound like a lot, [but there is a purpose for each one](http://futurice.com/blog/five-environments-you-cannot-develop-without).
 
-- [Local](#local-environment)
-- [CI/QA](#ciqa-environment)
+- [Local development](#local-development-environment)
+- [Continuous integration](#continuous-integration-environment)
+- [Testing](#testing-environment)
+- [Staging](#staging-environment)
 - [Production](#production-environment)
 
-If required, other environments can be added:
+## Local development environment
 
-- Staging before QA or prod
-- Separate CI from QA
+This is your local development environment. You probably should not have a shared external development environment, instead you should work to make it possible to run the entire system locally, by stubbing or mocking third-party services as needed.
 
-## Local environment
+## Continuous integration environment
 
-This is your local development environment. You probably should not have a shared external development environment, instead you should work to make it possible to run the entire system locally.
+CI is (among other things) for making sure that your software builds and automated tests pass after every change.
 
-## CI/QA Environment
+## Testing environment
 
-This is a shared environment that code is deployed to as often as possible, preferably every time code is committed to the mainline branch. It can be broken from time to time, especially in the active development phase. It is an important canary environment and is as similar to production as possible. In later stages CI can be separated from QA so that QA is relatively stable and can be used for client verification.
+This is a shared environment that code is deployed to as often as possible, preferably every time code is committed to the mainline branch. It can be broken from time to time, especially in the active development phase. It is an important canary environment and is as similar to production as possible. Any external integrations are set up to use staging-level versions of other services.
 
-## Production Environment
+## Staging environment
 
-The big iron.
+Staging is set up exactly like production. No changes to the production environment happen before having been rehearsed here first. Any mysterious production issues can be debugged here.
+
+## Production environment
+
+The big iron. Logged, monitored, cleaned up periodically, squared away and secured.
 
 # Bill of Materials
 
