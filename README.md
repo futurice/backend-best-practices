@@ -76,17 +76,35 @@ An important choice regarding any solution is where to run it.
 
 ## Persistence solutions
 
+This section aims to provide some guidance for selecting the type of persistence solution. The choice always needs to be tailored to the problem and none of these is a silver bullet, however.
+
 ### RDBMS
+
+Pick a relational database system such as PostgreSQL when data and transaction integrity is a major concern or when lots of data analysis is required. The [ACID compliance](https://en.wikipedia.org/wiki/ACID), aggregation and transformation functions of the RDBMS will help.
 
 ### NoSQL
 
+Pick a NoSQL database when you expect to scale horizontally and when you don't require ACID. Pick a system that fits your model.
+
 #### Document storage
+
+Stores documents that can be easily addressed and searched for by contents or by inclusion in a collection. This is made possible because the database understands the storage format. Use for just that: storing large numbers of structured documents. Notable examples:
+
+* CouchDB
+* ElasticSearch
+* MongoDB
+
+> Note that since 9.4, PostgreSQL can also be used to store JSON natively.
 
 #### Key-value store
 
+Stores values, or sometimes groups of key-value pairs, accessible by key. Considers the values to be simply blobs, so does not provide the query capabilities of document stores. Scalable to immense sizes. Notable examples:
+
+* Cassandra
+
 #### Graph database
 
-### Blob storage
+General graph databases store nodes and edges of a graph, providing index-free lookups of the neighbors of any node. For applications where graph-like queries like shortest path or diameter are crucial. Specialized graph databases also exist for storing e.g. [RDF triples](https://en.wikipedia.org/wiki/Resource_Description_Framework).
 
 # Environments
 
