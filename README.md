@@ -9,6 +9,14 @@ Backend development best practices
 - [General points on guidelines](#general-points-on-guidelines)
 - [Development environment setup in README.md](#development-environment-setup-in-readmemd)
 - [Data persistence](#data-persistence)
+  - [General considerations](#general-considerations)
+  - [SaaS, cloud-hosted or self-hosted?](#saas-cloud-hosted-or-self-hosted)
+  - [Persistence solutions](#persistence-solutions)
+    - [RDBMS](#rdbms)
+    - [NoSQL](#nosql)
+      - [Document storage](#document-storage)
+      - [Key-value store](#key-value-store)
+      - [Graph database](#graph-database)
 - [Environments](#environments)
   - [Local development environment](#local-development-environment)
   - [Continuous integration environment](#continuous-integration-environment)
@@ -56,9 +64,56 @@ Consider storing any relevant parts of the development environment and dependenc
 
 # Data persistence
 
-Under construction: How do we handle persisted data between versions, and between different environments
+## General considerations
 
-Shall this contain discussion on database stuff, or also any generated files?
+Whichever persistence solution your project uses, there are general considerations that you should follow:
+
+* Have backups that are verified to work
+* Have scripts or other tooling for copying persistent data from one env to another, e.g. from prod to staging in order to debug something
+* Have plans in place for rolling out updates to persistence solution (e.g. database server security update)
+* Have plans in place for scaling up persistence solution
+* Have plans or tooling for managing schema changes
+* Have monitoring in place to verify health of persistence solution
+
+## SaaS, cloud-hosted or self-hosted?
+
+An important choice regarding any solution is where to run it.
+
+* SaaS -- fast to get started, easy to scale up, some infrastructure work required to allow access from everywhere etc.
+* Self-hosted in the cloud -- allows tuning database more than SaaS and probably cheaper at scale in terms of hosting, but more labor-intensive
+* Self-hosted on own hardware -- able to tweak everything and manage physical security, but most expensive and labor intensive
+
+## Persistence solutions
+
+This section aims to provide some guidance for selecting the type of persistence solution. The choice always needs to be tailored to the problem and none of these is a silver bullet, however.
+
+### RDBMS
+
+Pick a relational database system such as PostgreSQL when data and transaction integrity is a major concern or when lots of data analysis is required. The [ACID compliance](https://en.wikipedia.org/wiki/ACID), aggregation and transformation functions of the RDBMS will help.
+
+### NoSQL
+
+Pick a NoSQL database when you expect to scale horizontally and when you don't require ACID. Pick a system that fits your model.
+
+#### Document storage
+
+Stores documents that can be easily addressed and searched for by contents or by inclusion in a collection. This is made possible because the database understands the storage format. Use for just that: storing large numbers of structured documents. Notable examples:
+
+* CouchDB
+* ElasticSearch
+* MongoDB
+
+> Note that since 9.4, PostgreSQL can also be used to store JSON natively.
+
+#### Key-value store
+
+Stores values, or sometimes groups of key-value pairs, accessible by key. Considers the values to be simply blobs, so does not provide the query capabilities of document stores. Scalable to immense sizes. Notable examples:
+
+* Cassandra
+
+#### Graph database
+
+General graph databases store nodes and edges of a graph, providing index-free lookups of the neighbors of any node. For applications where graph-like queries like shortest path or diameter are crucial. Specialized graph databases also exist for storing e.g. [RDF triples](https://en.wikipedia.org/wiki/Resource_Description_Framework).
 
 # Environments
 
