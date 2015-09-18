@@ -35,7 +35,6 @@ Backend development best practices
   - [Temporary file storage](#temporary-file-storage)
   - [Dedicated vs Shared server environment](#dedicated-vs-shared-server-environment)
 - [Application monitoring](#application-monitoring)
-  - [Overview](#overview)
   - [Status page](#status-page)
   - [Status page format](#status-page-format)
     - [Plain format](#plain-format)
@@ -251,8 +250,6 @@ Keep in mind that on UNIX/Linux filesystem, write access to a directory is a ver
 Additionally, as mentioned in the secrets section, file permissions are not preserved in version control, so even if you set them once, the next checkout/update/whatever may override them. Good idea is then to have a Makefile, script, a version control hook, etc that would set the correct permissions when updating the source.
 
 # Application monitoring
-
-## Overview
 
 Monitoring the full status of a service requires that both OS-level and application-specific monitoring checks are performed. OS-level checks include, for example, CPU, disk or memory usage, running processes, open ports, etc. Application specific checks are however the most important from the point of view of the running service. These can be anything from "does this URL respond and return HTTP status 200", to checking database connectivity, data consistency and so on.
 
