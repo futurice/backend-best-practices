@@ -256,7 +256,7 @@ Additionally, as mentioned in the secrets section, file permissions are not pres
 
 Monitoring the full status of a service requires that both OS-level and application-specific monitoring checks are performed. OS-level checks include, for example, CPU, disk or memory usage, running processes, open ports, etc. Application specific checks are however the most important from the point of view of the running service. These can be anything from "does this URL respond and return HTTP status 200", to checking database connectivity, data consistency and so on.
 
-This page describes a way to implement the application-specific checks, which would make it easier to monitor the overall application health and give full control to the application developers to determine what checks are meaningful in the context of the concrete application.
+This section describes a way to implement the application-specific checks, which would make it easier to monitor the overall application health and give full control to the application developers to determine what checks are meaningful in the context of the concrete application.
 
 In essence, the idea is to have a single endpoint (an application URL) that can give a good status overview of the entire application. This is implemented inside the application and requires work form the project team, but on the other hand, the project team is the one who can really define what is a OK state of the application and what is considered an ERROR state.
 
@@ -414,7 +414,7 @@ Whenever the overall application status is OK, the HTTP status code in the statu
 
 Often the application is running behind a load balaner. Load balancers typically can monitor application servers by polling a given URL. The health check is used so that the load balancer can stop routing traffic to failing application servers.
 
-The overall `/status` page is a good candidate for a load balancer health check URL. However, a separate dedicated status page for a load balancer health check prvides important benefit. Such page can fine-tune when the application is considered healthy from the load balancer perspective. For example, an error in a subsystem may still be considered a critical error for the overall application status, but does not necessarily need to cause the application server to be removed from the load balancer pool. A good example is a 3rd party integration status check. The load balancer health check page should only return non-200 status code when the application instance must be considered non-operational.
+The overall `/status` page is a good candidate for a load balancer health check URL. However, a separate dedicated status page for a load balancer health check provides important benefit. Such page can fine-tune when the application is considered healthy from the load balancer perspective. For example, an error in a subsystem may still be considered a critical error for the overall application status, but does not necessarily need to cause the application server to be removed from the load balancer pool. A good example is a 3rd party integration status check. The load balancer health check page should only return non-200 status code when the application instance must be considered non-operational.
 
 Load balancer health check page should be placed at `/status/health` URL. Depending on your load balancer, the format of that page may deviate from the overall status format described here. Some load balancers may even observe only the returned HTTP status code.
 
