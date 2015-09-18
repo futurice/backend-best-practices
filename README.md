@@ -34,7 +34,7 @@ Backend development best practices
   - [Anonymized Data](#anonymized-data)
   - [Temporary file storage](#temporary-file-storage)
   - [Dedicated vs Shared server environment](#dedicated-vs-shared-server-environment)
-- [Monitoring](#monitoring)
+- [Application monitoring](#application-monitoring)
   - [Overview](#overview)
   - [Status page](#status-page)
   - [Status page format](#status-page-format)
@@ -42,6 +42,7 @@ Backend development best practices
     - [JSON format](#json-format)
   - [HTTP status codes](#http-status-codes)
   - [Load balancer health checks](#load-balancer-health-checks)
+  - [Access control](#access-control)
 - [Release checklist](#release-checklist)
 - [General questions to consider](#general-questions-to-consider)
 - [Generally proven useful tools](#generally-proven-useful-tools)
@@ -249,7 +250,7 @@ Keep in mind that on UNIX/Linux filesystem, write access to a directory is a ver
 
 Additionally, as mentioned in the secrets section, file permissions are not preserved in version control, so even if you set them once, the next checkout/update/whatever may override them. Good idea is then to have a Makefile, script, a version control hook, etc that would set the correct permissions when updating the source.
 
-# Monitoring
+# Application monitoring
 
 ## Overview
 
@@ -416,6 +417,10 @@ Often the application is running behind a load balaner. Load balancers typically
 The overall `/status` page is a good candidate for a load balancer health check URL. However, a separate dedicated status page for a load balancer health check prvides important benefit. Such page can fine-tune when the application is considered healthy from the load balancer perspective. For example, an error in a subsystem may still be considered a critical error for the overall application status, but does not necessarily need to cause the application server to be removed from the load balancer pool. A good example is a 3rd party integration status check. The load balancer health check page should only return non-200 status code when the application instance must be considered non-operational.
 
 Load balancer health check page should be placed at `/status/health` URL. Depending on your load balancer, the format of that page may deviate from the overall status format described here. Some load balancers may even observe only the returned HTTP status code.
+
+## Access control
+
+The status pages may need proper authorization in place, especially in case they expose debugging information in status messages or application metrics. HTTP basic authentication or IP-based restrictions are good candidates to consider.
 
 # Release checklist
 
