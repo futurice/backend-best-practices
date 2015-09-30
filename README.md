@@ -455,7 +455,7 @@ You *do* have one, right? If you don't, here is a good generic starting point fo
 * Is the project one-off, or will there be continuous development?
 * What is the release cycle for a version of the service
 * What environments (dev, test, staging, prod, ...) are going to be set up?
-* What is the maximum allowed downtime for the production service?
+* How will downtime of the production service impact the value of the service?
 * How mature is the technology? Is major changes that break backward compatibility to be expected?
 
 # Generally proven useful tools
