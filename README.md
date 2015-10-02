@@ -64,7 +64,7 @@ We do not want to limit ourselves to certain tech stacks or frameworks. Differen
 
 # Development environment setup in README.md
 
-Document all the parts of the development/server environment. Strive to use the same setup and versions on all environments, starting from developer laptops, and ending with the actual production environment. This includes database, application server, proxy server (nginx, apache, ...), SDK version(s), gems/libraries/modules.
+Document all the parts of the development/server environment. Strive to use the same setup and versions on all environments, starting from developer laptops, and ending with the actual production environment. This includes database, application server, proxy server (nginx, Apache, ...), SDK version(s), gems/libraries/modules.
 
 Automate the setup process as much as possible. For example, [Docker Compose](https://docs.docker.com/compose/) could be used in both production and development to set up a complete environment, where [Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/) fetch all parts of the software, and contain the necessary scripting to setup the environment and all the parts of it. Consider using archived copies of installers, in case upstream packages later become unavailable. A minimum precaution is to keep SHA-1 checksums of the packages, and to make sure that the checksum matches when the packages are installed.
 
