@@ -64,24 +64,24 @@ We do not want to limit ourselves to certain tech stacks or frameworks. Differen
 
 # Development environment setup in README.md
 
-Document all the parts of the development/server environment. Strive to use the same setup and versions on all environments, starting from developer laptops, and ending with the actual production environment. This includes database, application server, proxy server (nginx, Apache, ...), SDK version(s), gems/libraries/modules.
+Document all the parts of the development/server environment. Strive to use the same setup and versions on all environments, starting from developer laptops, and ending with the actual production environment. This includes the database, application server, proxy server (nginx, Apache, ...), SDK version(s), gems/libraries/modules.
 
-Automate the setup process as much as possible. For example, [Docker Compose](https://docs.docker.com/compose/) could be used in both production and development to set up a complete environment, where [Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/) fetch all parts of the software, and contain the necessary scripting to setup the environment and all the parts of it. Consider using archived copies of installers, in case upstream packages later become unavailable. A minimum precaution is to keep SHA-1 checksums of the packages, and to make sure that the checksum matches when the packages are installed.
+Automate the setup process as much as possible. For example, [Docker Compose](https://docs.docker.com/compose/) could be used both in production and development to set up a complete environment, where [Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/) fetch all parts of the software, and contain the necessary scripting to setup the environment and all the parts of it. Consider using archived copies of the installers, in case upstream packages later become unavailable. A minimum precaution is to keep a SHA-1 checksums of the packages, and to make sure that the checksum matches when the packages are installed.
 
-Consider storing any relevant parts of the development environment and dependencies in some persistent storage. If the environment can be built using Docker, one possible way to do this is to use [docker export](http://docs.docker.com/reference/commandline/cli/#export).
+Consider storing any relevant parts of the development environment and its dependencies in some persistent storage. If the environment can be built using Docker, one possible way to do this is to use [docker export](http://docs.docker.com/reference/commandline/cli/#export).
 
 # Data persistence
 
 ## General considerations
 
-Whichever persistence solution your project uses, there are general considerations that you should follow:
+Independent of the persistence solution your project uses, there are general considerations that you should follow:
 
 * Have backups that are verified to work
 * Have scripts or other tooling for copying persistent data from one env to another, e.g. from prod to staging in order to debug something
-* Have plans in place for rolling out updates to persistence solution (e.g. database server security update)
-* Have plans in place for scaling up persistence solution
+* Have plans in place for rolling out updates to the persistence solution (e.g. database server security updates)
+* Have plans in place for scaling up the persistence solution
 * Have plans or tooling for managing schema changes
-* Have monitoring in place to verify health of persistence solution
+* Have monitoring in place to verify health of the persistence solution
 
 ## SaaS, cloud-hosted or self-hosted?
 
@@ -105,7 +105,7 @@ Pick a NoSQL database when you expect to scale horizontally and when you don't r
 
 #### Document storage
 
-Stores documents that can be easily addressed and searched for by contents or by inclusion in a collection. This is made possible because the database understands the storage format. Use for just that: storing large numbers of structured documents. Notable examples:
+Stores documents that can be easily addressed and searched for by content or by inclusion in a collection. This is made possible because the database understands the storage format. Use for just that: storing large numbers of structured documents. Notable examples:
 
 * CouchDB
 * ElasticSearch
@@ -135,7 +135,7 @@ This section describes the environments you should have, at a minimum. It might 
 
 ## Local development environment
 
-This is your local development environment. You probably should not have a shared external development environment, instead you should work to make it possible to run the entire system locally, by stubbing or mocking third-party services as needed.
+This is your local development environment. You probably should not have a shared external development environment. Instead, you should work to make it possible to run the entire system locally, by stubbing or mocking third-party services as needed.
 
 ## Continuous integration environment
 
@@ -143,7 +143,7 @@ CI is (among other things) for making sure that your software builds and automat
 
 ## Testing environment
 
-This is a shared environment that code is deployed to as often as possible, preferably every time code is committed to the mainline branch. It can be broken from time to time, especially in the active development phase. It is an important canary environment and is as similar to production as possible. Any external integrations are set up to use staging-level versions of other services.
+This is a shared environment where code is deployed to as often as possible, preferably every time code is committed to the mainline branch. It can be broken from time to time, especially in the active development phase. It is an important canary environment and is as similar to production as possible. Any external integrations are set up to use staging-level versions of other services.
 
 ## Staging environment
 
@@ -160,25 +160,25 @@ This document must be included in every build artifact and shall contain the fol
 1. What version(s) of an SDK and critical tools were used to produce it
 1. Which dependencies have been included
 1. A globally unique revision number of the build (i.e. a git SHA-1 hash)
-1. Environment and variables used when building the package
-1. List of failed tests or checks
+1. The environment and variables used when building the package
+1. A list of failed tests or checks
 
 
 # Security
 
 Be aware of possible security threats and problems. You should at least be familiar with the [OWASP Top 10 vulnerabilities](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project), and you should of monitor vulnerabilities in any third party software you use.
 
-The following are good generic security guidelines:
+Good generic security guidelines would be:
 
 ## Credentials
 
-Never send credentials unencrypted over public network. Use always encryption (such as HTTPS, SSL, etc.).
+Never send credentials unencrypted over public network. Always use encryption (such as HTTPS, SSL, etc.).
 
 ## Secrets
 
 Never store secrets (passwords, keys, etc.) in the sources in version control! It is very easy to forget they are there and the project source tends to end up in many places (developer machines, development test servers, etc) which unnecessarily increases the risk of an important secret being compromised. Also, version control has the nasty feature of overwriting file permissions, so even if you secure your config file permissions, the next time you check out the source, the permissions would be overwritten to the default public-readable.
 
-Probably the easiest way to handle secrets is to put them in a separate file on the servers that need them, which is ignored from version control. You can keep in version control e.g. a `.sample` file with fake values to illustrate what should go in the real file. In some cases, it is not easy to include a separate configuration file from the main configuration: if this happens, consider using environment variables, or writing the config file from a version-controlled template on deployment.
+Probably the easiest way to handle secrets is to put them in a separate file on the servers that need them, and to be ignored by version control. You can keep e.g. a `.sample` file in the version control, with fake values to illustrate what should go there in the real file. In some cases, it is not easy to include a separate configuration file from the main configuration. If this happens, consider using environment variables, or writing the config file from a version-controlled template on deployment.
 
 ## Login Throttling
 
@@ -191,16 +191,17 @@ The aim of these measures is make online brute-force attacks against usernames/p
 
 Never store passwords in reversible encrypted form, unless absolutely required by the application / system. Here is a good article about what and what not to do: https://crackstation.net/hashing-security.htm
 
-If you do need to be able to obtain plaintext passwords from the database, here are some suggestions that you can follow:
+If you do need to be able to obtain plaintext passwords from the database, here are some suggestions to follow.
+
 If passwords won't be converted back to plaintext often (e.g. special procedure is required), keep decryption keys away from the application that accesses the database regularly.
 
-If passwords still need to be regularly decrypted, separate the decryption functionality from the main application as much as possible - e.g. separate server accepts requests to decrypt a password, but enforces higher level of control - throttling, authorization, etc.
+If passwords still need to be regularly decrypted, separate the decryption functionality from the main application as much as possible—e.g. a separate server accepts requests to decrypt a password, but enforces a higher level of control, like throttling, authorization, etc.
 
-Whenever possible (it should be possible in great majority of cases), store passwords using a good one-way hash with good random salt. And, no, SHA1 is not a good choice for a hashing function in this context. Hash functions that are designed with passwords in mind are deliberately slower, which makes offline brute-force attacks more time consuming, hence less feasible. See this post: http://security.stackexchange.com/questions/211/how-to-securely-hash-passwords/31846#31846
+Whenever possible (it should be in a great majority of cases), store passwords using a good one-way hash with a good random salt. And, no, SHA-1 is not a good choice for a hashing function in this context. Hash functions that are designed with passwords in mind are deliberately slower, which makes offline brute-force attacks more time consuming, hence less feasible. See this post for more details: http://security.stackexchange.com/questions/211/how-to-securely-hash-passwords/31846#31846
 
 ## Audit Log
 
-For applications handling sensitive data, especially where certain users are allowed relatively wide access or control, it's good to maintain some kind of audit logging - storing a sequence of actions / events that took place in the system, together with the event/source originator (user, automation job, etc). This can be, e.g:
+For applications handling sensitive data, especially where certain users are allowed a relatively wide access or control, it's good to maintain some kind of audit logging—storing a sequence of actions / events that took place in the system, together with the event/source originator (user, automation job, etc). This can be, e.g:
 
     2012-09-13 03:00:05 Job "daily_job" performed action "delete old items".
     2012-09-13 12:47:23 User "admin_user" performed action "delete item 123".
@@ -208,29 +209,29 @@ For applications handling sensitive data, especially where certain users are all
     2012-09-13 13:02:11 User "sneaky_user" performed action "view confidential page 567".
     ...
 
-The log may be simple text file or store in a database. At least three items are good to have: exact timestamp, action/event originator (who did this), action/event (what was done). Logged actions, of course depend on what is important for the application itself.
+The log may be a simple text file or stored in a database. At least these three items are good to have: an exact timestamp, the action/event originator (who did this), and the actual action/event (what was done). The exact actions to be logged depend on what is important for the application itself, of course.
 
-The audit log may be part of the normal application log, but the emphasis here is on logging who did what and not only that a certain action was performed. If possible, the audit log should be made tamper-proof, e.g. only be accessible by a dedicated logging proces/user and directly by the application.
+The audit log may be a part of the normal application log, but the emphasis here is on logging who did what and not only that a certain action was performed. If possible, the audit log should be made tamper-proof, e.g. only be accessible by a dedicated logging process or user and not directly by the application.
 
 ## Suspicious Action Throttling and/or blocking
 
-This can be seen as a generalization of the Login Throttling, this time introducing similar mechanics for arbitrary actions that are deemed "suspicious" within the context of the application. For example, an ERP system which allows normal users access to a substantial amount of information, but expects users to be concerned only with a small subset of that information, may limit attempts to access larger than expected datasets too quickly. E.g. prevent users from downloading list of all customers, if users are supposed to work on one or two customers at a time. Note that this is different from limiting access completely - users are still allowed to retrieve information about any customer, just not all of them at once. Depending on the system, throttling might not be enough - e.g. when one invokes an action on all resources with a single request. Then blocking might be required. Note the difference between making 1000 requests in 10 seconds to retrieve full customer information, one customer at a time, and making a single request to retrieve that information at once.
+This can be seen as a generalization of the Login Throttling, this time introducing similar mechanics for arbitrary actions that are deemed "suspicious" within the context of the application. For example, an ERP system which allows normal users access to a substantial amount of information, but expects users to be concerned only with a small subset of that information, may limit attempts to access larger than expected datasets too quickly. E.g. prevent users from downloading list of all customers, if users are supposed to work on one or two customers at a time. Note that this is different from limiting access completely—users are still allowed to retrieve information about any customer, just not all of them at once. Depending on the system, throttling might not be enough—e.g. when one invokes an action on all resources with a single request. Then blocking might be required. Note the difference between making 1000 requests in 10 seconds to retrieve full customer information, one customer at a time, and making a single request to retrieve that information at once.
 
-What is suspicious here depends strongly on the expected use of the application. E.g. in one system, deleting 10000 records might be completely legitimate action, while in another - not.
+What is suspicious here depends strongly on the expected use of the application. E.g. in one system, deleting 10000 records might be completely legitimate action, but not so in an another one.
 
 ## Anonymized Data
 
-Whenever large datasets are exported to third parties, data should be anonymized as much as possible, given the intended use of the data. For example, if the third party service will provide general statistical analysis on a customer database, it probably does not need to know the names, addresses or other personal information for individual customers. Even a generic customer ID number might be too revealing, depending on the data set. Take a look at this article: http://arstechnica.com/tech-policy/2009/09/your-secrets-live-online-in-databases-of-ruin/.
+Whenever large datasets are exported to third parties, data should be anonymized as much as possible, given the intended use of the data. For example, if a third party service will provide general statistical analysis on a customer database, it probably does not need to know the names, addresses or other personal information for individual customers. Even a generic customer ID number might be too revealing, depending on the data set. Take a look at this article: http://arstechnica.com/tech-policy/2009/09/your-secrets-live-online-in-databases-of-ruin/.
 
 ## Temporary file storage
 
-Make sure you are aware where your application is storing temporary files. If you are using publicly accessible directories (which are most probably the default) like `/tmp` and `/var/tmp`, make sure you create your files with mode 600, so that they are readable only by the user, your application is running as. Alternatively, have a protected directory for storing temporary files (directory accessible only by the application user).
+Make sure you are aware where your application is storing temporary files. If you are using publicly accessible directories (which are most probably the default) like `/tmp` and `/var/tmp`, make sure you create your files with mode 600, so that they are readable only by the user your application is running as. Alternatively, have a protected directory for storing temporary files (directory accessible only by the application user).
 
 ## Dedicated vs Shared server environment
 
-The security threats can be quite different depending on whether the application is going to run in a shared or dedicated environment. Shared here means that there are other (not necessarily 3rd party)  applications running on the same server. In that case, having appropriate file permissions becomes critical, otherwise application source code, data files, temporary files, logs, etc might end up accessible by unintended users. Then a security breach in a 3rd party application might result in your application being compromised.
+The security threats can be quite different depending on whether the application is going to run in a shared or a dedicated environment. Shared here means that there are other (not necessarily 3rd party) applications running on the same server. In that case, having appropriate file permissions becomes critical, otherwise application source code, data files, temporary files, logs, etc might end up accessible by unintended users. Then a security breach in a 3rd party application might result in your application being compromised.
 
-You can never be sure what kind of environment your application will run for its entire life time - it may start on a dedicated server, but as time goes, 3rd party applications might be added to the same system. That is why it is best to plan from the very first moment, that your application runs in a shared environment, and take all precautions. Here's a list (not exhaustive) of files/directories you need to think about:
+You can never be sure what kind of an environment your application will run for its entire life time—it may start on a dedicated server, but as time goes, 3rd party applications might be added to the same system. That is why it is best to plan from the very first moment that your application runs in a shared environment, and take all precautions. Here's a non-exhaustive list of the files/directories you need to think about:
 
 * application source code
 * data directories
@@ -245,27 +246,27 @@ You can never be sure what kind of environment your application will run for its
 
 Sometimes, some files need to be accessible by different users (e.g. static content served by apache). In that case, take care to allow only access to what is really needed.
 
-Keep in mind that on UNIX/Linux filesystem, write access to a directory is a very powerful permission - it allows you to delete files in that directory and recreate them (which results in modified file). /tmp and /var/tmp are by default safe from this effect, because of the sticky bit that should be set on those.
+Keep in mind that on a UNIX/Linux filesystem, write access to a directory is permission-wise very powerful—it allows you to delete files in that directory and recreate them (which results in a modified file). /tmp and /var/tmp are by default safe from this effect, because of the sticky bit that should be set on those.
 
-Additionally, as mentioned in the secrets section, file permissions are not preserved in version control, so even if you set them once, the next checkout/update/whatever may override them. Good idea is then to have a Makefile, script, a version control hook, etc that would set the correct permissions when updating the source.
+Additionally, as mentioned in the secrets section, file permissions might not be preserved in version control, so even if you set them once, the next checkout/update/whatever may override them. A good idea is then to have a Makefile, a script, a version control hook or something similar that would set the correct permissions when updating the sources.
 
 # Application monitoring
 
-Monitoring the full status of a service requires that both OS-level and application-specific monitoring checks are performed. OS-level checks include, for example, CPU, disk or memory usage, running processes, open ports, etc. Application specific checks are however the most important from the point of view of the running service. These can be anything from "does this URL respond and return HTTP status 200", to checking database connectivity, data consistency and so on.
+Monitoring the full status of a service requires that both OS-level and application-specific monitoring checks are performed. OS-level checks include, for example, CPU, disk or memory usage, running processes, open ports, etc. Application specific checks are, however, the most important from the point of view of the running service. These can be anything from "does this URL respond and return the HTTP status 200", to checking database connectivity, data consistency, and so on.
 
 This section describes a way to implement the application-specific checks, which would make it easier to monitor the overall application health and give full control to the application developers to determine what checks are meaningful in the context of the concrete application.
 
-In essence, the idea is to have a single endpoint (an application URL) that can give a good status overview of the entire application. This is implemented inside the application and requires work form the project team, but on the other hand, the project team is the one who can really define what is a OK state of the application and what is considered an ERROR state.
+In essence, the idea is to have a single endpoint (an application URL) that can give a good status overview of the entire application. This is implemented inside the application and requires work from the project team, but on the other hand, the project team is the one who can really define what is an OK state of the application and what is considered an ERROR state.
 
-The application could implement any number of "subsystem" checks. For example:
+The application could implement any number of "subsystem" checks. For example,
 
-* Connection to database is ok
-* Data is in consistent state (e.g. list of items in a certain database table is meaningful)
-* 3rd party services that the application integrates with are reachable
-* Are ElasticSearch indexes in consistent state
-* anything else, that makes sense for the application
+* connection to the database is up
+* data is in an consistent state (e.g. a list of items in a certain database table is meaningful)
+* 3rd party services that the application integrates to are reachable
+* ElasticSearch indexes are in a consistent state
+* anything else that makes sense for the application
 
-A combined overview status should be provided by the application, aggregating the information from the various subsystem checks. The idea is that external monitoring system can track only this combined overview, so that the external monitoring does not need to be reconfigured when a new application check is added or modified. Moreover, the developers are the ones that can decide on what the overall status is based on the subsystem checks (i.e. which ones are critical, while ones are not, etc).
+A combined overview status should be provided by the application, aggregating the information from the various subsystem checks. The idea is that an external monitoring system can track only this combined overview, so that the external monitoring does not need to be reconfigured when a new application check is added or modified. Moreover, the developers are the ones that can decide about what the overall status is based on regarding subsystem checks (i.e. which ones are critical, while ones are not, etc).
 
 ## Status page
 
@@ -275,9 +276,9 @@ All status checks SHOULD be accessible under `/status` URLs as follows:
 * `/status/subsystem1` - a status check for speciffic subsystem (optional)
 * ...
 
-The main `/status` page should at a minimum give an overall status of the system, as described in the next section. This means that the main `/status` page should execute ALL subsystem checks and report the aggregated overall system status. It is up to the developers to decide how the overall system status is determined based on the subsystems. For example and `ERROR` state of some non-critical subsystem may only generate overall `WARNING` overall status.
+The main `/status` page should at a minimum give an overall status of the system, as described in the next section. This means that the main `/status` page should execute ALL subsystem checks and report the aggregated overall system status. It is up to the developers to decide how the overall system status is determined based on the subsystems. For example an `ERROR` state of some non-critical subsystem may only generate an overall `WARNING` status.
 
-For performance reasons, some subsystem checks may be excluded from this overall `/status` page - for example, when the check causes higher resource usage, takes longer time to complete, etc. Overall, the main status page should be light enough so that it can be polled relatively often (every 1-3 minutes) and not cause too much load on the system. Subsystem checks that are excluded from the overall status check should have their own URLs, as shown above. Naturally, monitoring those would require modification of the monitoring system configuration. To overcome this, a different approach can be taken: the application could perform the heavy subsystem checks in a background process at a rate that is acceptable and store the status internally. This would allow the main status page to reflect also these heavy checks (e.g. it would retrieve the last performed check status). This approach should be used, unless its implementation is too difficult.
+For performance reasons, some subsystem checks may be excluded from this overall `/status` page - for example, when the check causes higher resource usage, takes longer time to complete, etc. Overall, the main status page should be light enough so that it can be polled relatively often (every 1-3 minutes) and not cause too much load on the system. Subsystem checks that are excluded from the overall status check should have their own URLs, as shown above. Naturally, monitoring those would require modifications in the monitoring system configuration. To overcome this, a different approach can be taken: the application could perform the heavy subsystem checks in a background process at a rate that is acceptable and store the status internally. This would allow the main status page to reflect also these heavy checks (e.g. it would retrieve the last performed check status). This approach should be used, unless its implementation is too difficult.
 
 ## Status page format
 
@@ -319,7 +320,7 @@ database_status: ERROR Connection failed
 elastic_search_status: WARN Too few entries in index A.
 ```
 
-In addition to status lines, a status page can have non-status keys. For example, those can be showing some metrics (that may or may not be monitored). The additional keys must be prefixed with the subsystem name.
+In addition to the status lines, a status page can have non-status keys. For example, those can be showing some metrics (that may or may not be monitored). The additional keys must be prefixed with the subsystem name.
 
 ```
 status: OK
@@ -405,23 +406,23 @@ Something failing:
 
 ## HTTP status codes
 
-Whenever the overall application status is OK, the HTTP status code in the status page response MUST be set to 200 (OK). Otherwise a 5XX error code SHOULD be set. For example, code 500 (Internal Server Error) could be used. Optionally, non-critical WARN status may still return code 200.
+Whenever the overall application status is OK, the HTTP status code in the status page response MUST be set to 200 (OK). Otherwise a 5XX error code SHOULD be set. For example, code 500 (Internal Server Error) could be used. Optionally, non-critical WARN status may still respond with 200.
 
 ## Load balancer health checks
 
-Often the application is running behind a load balaner. Load balancers typically can monitor application servers by polling a given URL. The health check is used so that the load balancer can stop routing traffic to failing application servers.
+Often the application is running behind a load balaner. Load balancers typically can monitor application servers by polling a given URL. The health check is used so that the load balancer can stop routing traffic to the failing application servers.
 
-The overall `/status` page is a good candidate for a load balancer health check URL. However, a separate dedicated status page for a load balancer health check provides important benefit. Such page can fine-tune when the application is considered healthy from the load balancer perspective. For example, an error in a subsystem may still be considered a critical error for the overall application status, but does not necessarily need to cause the application server to be removed from the load balancer pool. A good example is a 3rd party integration status check. The load balancer health check page should only return non-200 status code when the application instance must be considered non-operational.
+The overall `/status` page is a good candidate for the load balancer health check URL. However, a separate dedicated status page for a load balancer health check provides an important benefit. Such a page can be fine-tuned for when the application is considered to be healthy from the load balancer's perspective. For example, an error in a subsystem may still be considered a critical error for the overall application status, but does not necessarily need to cause the application server to be removed from the load balancer pool. A good example is a 3rd party integration status check. The load balancer health check page should only return non-200 status code when the application instance must be considered non-operational.
 
-Load balancer health check page should be placed at `/status/health` URL. Depending on your load balancer, the format of that page may deviate from the overall status format described here. Some load balancers may even observe only the returned HTTP status code.
+The load balancer health check page should be placed at a `/status/health` URL. Depending on your load balancer, the format of that page may deviate from the overall status format described here. Some load balancers may even observe only the returned HTTP status code.
 
 ## Access control
 
-The status pages may need proper authorization in place, especially in case they expose debugging information in status messages or application metrics. HTTP basic authentication or IP-based restrictions are good candidates to consider.
+The status pages may need proper authorization in place, especially in case they expose debugging information in status messages or application metrics. HTTP basic authentication or IP-based restrictions are usually good enough candidates to consider.
 
 # Release checklist
 
-When you are ready to make a release, remember to check off everything on your release checklist! The resulting peace of mind, repeatability and dependability is a great boon.
+When you are ready to release, remember to check off everything on your release checklist! The resulting peace of mind, repeatability and dependability is a great boon.
 
 You *do* have one, right? If you don't, here is a good generic starting point for you:
 
@@ -444,7 +445,7 @@ You *do* have one, right? If you don't, here is a good generic starting point fo
 * [ ] Errors can be mapped to stack traces
 * [ ] Release notes have been written
 * [ ] Server environments are up-to-date
-* [ ] A plan to update server environments exists
+* [ ] A plan for updating the server environments exists
 * [ ] The product has been load tested
 * [ ] A method exists for replicating the state of one environment in another (e.g. copy prod to QA to reproduce an error)
 * [ ] All repeating release processes have been automated
@@ -453,7 +454,7 @@ You *do* have one, right? If you don't, here is a good generic starting point fo
 
 * What is the expected/required life-span of the project?
 * Is the project one-off, or will there be continuous development?
-* What is the release cycle for a version of the service
+* What is the release cycle for a version of the service?
 * What environments (dev, test, staging, prod, ...) are going to be set up?
 * How will downtime of the production service impact the value of the service?
 * How mature is the technology? Is major changes that break backward compatibility to be expected?
