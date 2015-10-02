@@ -55,7 +55,7 @@ Backend development best practices
 2. Single command run
 3. Single command deploy
 4. Repeatable and re-creatable builds
-5. Build artifacts bundle a "Bill of Materials"
+5. Build artifacts bundle a ["Bill of Materials"](#bill-of-materials)
 6. Use [UTC as the timezone](http://yellerapp.com/posts/2015-01-12-the-worst-server-setup-you-can-make.html) all around
 
 # General points on guidelines
