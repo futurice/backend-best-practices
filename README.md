@@ -42,7 +42,7 @@ Backend development best practices
   - [HTTP status codes](#http-status-codes)
   - [Load balancer health checks](#load-balancer-health-checks)
   - [Access control](#access-control)
-  - [Bad examples of monitoring](#bad-examples-of-monitoring)
+  - [Avoid quick & dirty approaches](#avoid-quick-&-dirty-approaches)
 - [Release checklist](#release-checklist)
 - [General questions to consider](#general-questions-to-consider)
 - [Generally proven useful tools](#generally-proven-useful-tools)
@@ -421,29 +421,15 @@ The load balancer health check page should be placed at a `/status/health` URL. 
 
 The status pages may need proper authorization in place, especially in case they expose debugging information in status messages or application metrics. HTTP basic authentication or IP-based restrictions are usually good enough candidates to consider.
 
-## Bad examples of monitoring
+## Avoid quick & dirty approaches
 
-When crafting a new service, it’s tempting to create some basic monitoring, like automatically sent emails incase of errors.
+In projects with very limited time and/or budget, one might considers an easy approach to error reporting. One of these approaches is to send automatic email whenever something goes wrong.
 
-It sounds simple - something goes wrong, email is sent to appropriate parties. In reality, this kind of approach may result in spam-like flow of error messages which cannot be used to identify the problems.
+In some cases, this might be enough, but in case of high traffic applications email-based reporting can produce unwanted side effects:
+* If critical backend API goes down (i.e. some legacy system fails to respond for longer period of time), huge amount of error mails are generated in short period of time.
+* Some errors are more critical than others. Reporting _everything_ generates a lot of noise and actual problems might be missed.
 
-On example from a customer extranet portal:
-
-Service sends an email when something goes wrong. It may be a HTTP 500 error because of unresponsive/broken backend services (ERP, CRM) or 404 because of missing documents which were supposed to be available for download.
-
-At one point, the API responsible for customer data stopped working on the CRM end. This resulted in totally unusable extranet, since it relies heavily on end customer data and their contract status. Problem occurred on Sunday and there’s no 24/7 monitoring deal on the CRM vendor side to handle these kind of issues. When users tried to log in to extranet, it resulted in HTTP 500 error each time the extranet page was loaded. Some 15 000 email were sent during Sunday and early Monday before the issue was noticed and extranet taken down into maintenance mode.
-
-In this example, big problems came when one critical API was down in the customer service solution. High traffic website started to generate huge amount of emails all related to same problem - not very effective. This started to block mail server, slowed down Flowdock (which also receives these emails to customer flow) and also generated several hundred mb of log files on the extranet server.
-
-Another example is from a customer public website:
-
-This one also sends mails in case of errors. In this case, so large portion of errors are not actually errors that the mails can’t be used to identify if there is actually a major problem or not. People do not read them, since they are tired to look through unimportant mails all the time.
-
-One can see that even there had been good intentions to do monitoring, it has just failed completely because of general rather  than carefully thought approach to the problem.
-
-If possible, different kind of errors should be treated differently. If a API call fails one time - maybe no action is needed. If it fails often (and/or within a small time window), something might be going on.  Also controlling the logging based on number of errors might be a good idea - if identical error is noticed for 5000 times within a 10 minute window, maybe it’s not the best idea to log everything and send email for each case? There’s nothing wrong with emails, if things a set up properly :).
-
-Getting monitoring right may take a while and customers might not be eager to pay for this. They should be reminded that if there’s no 24/7 monitoring deal, having the automated error handling provides valuable details about their services and how customers experience them.
+For QA email works out just fine, but in PROD this should be avoided.
 
 # Release checklist
 
