@@ -42,7 +42,9 @@ Backend development best practices
   - [HTTP status codes](#http-status-codes)
   - [Load balancer health checks](#load-balancer-health-checks)
   - [Access control](#access-control)
-- [Release checklist](#release-checklist)
+- [Checklists](#checklists)
+    - [Responsibility checklist](#responsibility-checklist)
+    - [Release checklist](#release-checklist)
 - [General questions to consider](#general-questions-to-consider)
 - [Generally proven useful tools](#generally-proven-useful-tools)
 - [License](#license)
@@ -426,7 +428,32 @@ The load balancer health check page should be placed at a `/status/health` URL. 
 
 The status pages may need proper authorization in place, especially in case they expose debugging information in status messages or application metrics. HTTP basic authentication or IP-based restrictions are usually good enough candidates to consider.
 
-# Release checklist
+# Checklists
+
+To avoid forgetting the most important things, here are some handy checklists for your current or upcoming projects.
+
+## Responsibility checklist
+
+In bigger projects, especially when multiple parties are involved, it is crucial to keep track of all different aspects and its responsibilities. The following table illustrates how a go-live checklist for releasing a website could look like:
+
+| Aspect    | Task                              | Responsible person / party | Deadline     | Status            |
+|---        |---                                |---                         |---           |---                |
+| Frontend  | Website wireframes                | e.g. Company B / Person X  | e.g. 17.6.   |  e.g. in progress |
+| Frontend  | Website design                    | e.g. Company A / Person Z  | e.g. 23.7.   |  e.g. waiting     |
+| Frontend  | Website templates                 |   |   |   |
+| Frontend  | Content creation and population   |   |   |   |
+| Backend   | Setup CMS                         |   |   |   |
+| Backend   | Setup staging environment         |   |   |   |
+| Backend   | Setup production environment      |   |   |   |
+| Backend   | Migrate hosting services to client accounts |   |   |   |
+| Backend   | DNS configuration                 |   |   |   |
+| Backend   | Setup website analytics           |   |   |   |
+| Backend   | Integrate marketing automation    |   |   |   |
+| Backend   | Web font license                  |   |   |   |
+| Dates     | Website/Product go-live time      |   |   |   |
+| Dates     | Publish the website               |   |   |   |
+
+## Release checklist
 
 When you are ready to release, remember to check off everything on your release checklist! The resulting peace of mind, repeatability and dependability is a great boon.
 
