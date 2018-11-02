@@ -111,7 +111,6 @@ Stores documents that can be easily addressed and searched for by content or by 
 
 * CouchDB
 * ElasticSearch
-* MongoDB
 
 > Note that since 9.4, PostgreSQL can also be used to store JSON natively.
 
