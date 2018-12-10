@@ -111,7 +111,6 @@ Stores documents that can be easily addressed and searched for by content or by 
 
 * CouchDB
 * ElasticSearch
-* MongoDB
 
 > Note that since 9.4, PostgreSQL can also be used to store JSON natively.
 
@@ -120,6 +119,7 @@ Stores documents that can be easily addressed and searched for by content or by 
 Stores values, or sometimes groups of key-value pairs, accessible by key. Considers the values to be simply blobs, so does not provide the query capabilities of document stores. Scalable to immense sizes. Notable examples:
 
 * Cassandra
+* Redis
 
 #### Graph database
 
