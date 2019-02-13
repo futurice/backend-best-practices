@@ -179,8 +179,8 @@ Good generic security guidelines would be:
 
 - Don't run any untrusted binaries inside Docker containers
 - Create unprivileged users inside Docker containers and run binaries using unprivileged user instead of root whenever possible
-- Periodically update the dependencies inside Docker containers
-- Periodically update your Docker hosts
+- Periodically rebuild and redeploy your containers with updated libraries and dependencies
+- Periodically update (or rebuild) your Docker hosts with latest security updates
 - Multiple containers running on same host will have some level of access to other containers and the host itself. Properly secure all containers and hosts
 
 ## Credentials
