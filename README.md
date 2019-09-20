@@ -5,6 +5,7 @@ Backend development best practices
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [Translations of this document](#translations-of-this-document)
 - [N Commandments](#n-commandments)
 - [General points on guidelines](#general-points-on-guidelines)
 - [Development environment setup in README.md](#development-environment-setup-in-readmemd)
@@ -51,6 +52,12 @@ Backend development best practices
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Translations of this document
+
+These are community-provided translations of this document. If you have comments regarding a particular translation, please approach the translation's maintainer.
+
+- [Turkish](https://github.com/umutphp/backend-best-practices) translation by [umutphp](https://github.com/umutphp)
 
 # N Commandments
 
